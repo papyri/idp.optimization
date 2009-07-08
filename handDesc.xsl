@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns="http://www.tei-c.org/ns/1.0" xmlns:epidoc="http://epidoc.sf.net/ns/EpiDoc/8.0">
+  xmlns="http://www.tei-c.org/ns/1.0">
 
-  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
+  <xsl:output method="xml" version="2.0" encoding="UTF-8" indent="no"
+    doctype-public="http://www.stoa.org/epidoc/dtd/6/tei-epidoc.dtd"/>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
-  <!-- ||||||||||||  copy all existing elements ||||||||||| -->
+  <!-- |||||||||  copy all existing elements ||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
 
   <xsl:template match="*">
     <xsl:element name="{local-name()}">
       <xsl:copy-of
-        select="@*[not(local-name()=('default','org','sample','full','status','anchored'))]"/>
+        select="@*[not(local-name()=('default','org','sample','full','status','anchored','cert'))]"/>
+      <xsl:if test="@cert='low'">
+        <xsl:copy-of select="@cert"/>
+      </xsl:if>
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
@@ -28,7 +32,7 @@
   </xsl:template>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
-  <!-- ||||||||||||||     EXCEPTIONS      |||||||||||||| -->
+  <!-- ||||||||||||||    EXCEPTIONS     |||||||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
 
   <xsl:template match="handList">
