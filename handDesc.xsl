@@ -13,10 +13,7 @@
   <xsl:template match="*">
     <xsl:element name="{local-name()}">
       <xsl:copy-of
-        select="@*[not(local-name()=('default','org','sample','full','status','anchored','cert'))]"/>
-      <xsl:if test="@cert='low'">
-        <xsl:copy-of select="@cert"/>
-      </xsl:if>
+        select="@*[not(local-name()=('default','org','sample','full','status','anchored'))]"/>
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>

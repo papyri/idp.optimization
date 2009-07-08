@@ -13,10 +13,7 @@
   <xsl:template match="*">
     <xsl:element name="{local-name()}">
       <xsl:copy-of
-        select="@*[not(local-name()=('default','org','sample','full','status','anchored','cert'))]"/>
-      <xsl:if test="@cert='low'">
-        <xsl:copy-of select="@cert"/>
-      </xsl:if>
+        select="@*[not(local-name()=('default','org','sample','full','status','anchored'))]"/>
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
@@ -35,22 +32,15 @@
   <!-- ||||||||||||||    EXCEPTIONS     |||||||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
 
-  <xsl:template match="handList">
-    <xsl:if test="//handShift">
-      <xsl:copy>
-        <xsl:copy-of select="@*"/>
+  <xsl:template match="unclear[parent::ex]">
         <xsl:apply-templates/>
-      </xsl:copy>
-    </xsl:if>
   </xsl:template>
 
-  <xsl:template match="hand">
-    <xsl:if test="//handShift[@new = current()/@id]">
-      <xsl:copy>
-        <xsl:copy-of select="@*"/>
-        <xsl:apply-templates/>
-      </xsl:copy>
-    </xsl:if>
+  <xsl:template match="ex[child::unclear]">
+    <xsl:attribute name="cert">
+      <xsl:text>low</xsl:text>
+    </xsl:attribute>
+    <xsl:apply-templates/>
   </xsl:template>
 
 </xsl:stylesheet>
