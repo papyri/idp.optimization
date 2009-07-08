@@ -2,7 +2,7 @@
 
 <!-- ||||||||||||||||||||||||||||||||||||||||||| -->
 <!-- |||||  Gabriel BODARD 2009-06-21    |||||| -->
-<!-- ||||           Last update 2009-06-21       |||||| -->
+<!-- ||||           Last update 2009-07-08       |||||| -->
 <!-- ||||||||||||||||||||||||||||||||||||||||||| -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
@@ -43,7 +43,7 @@
       <xsl:copy-of select="@*[not(local-name() = 'n')]"/>
       <xsl:if test="$tmnodump//doc[ddbno = current()]">
         <xsl:attribute name="n">
-          <xsl:value-of select="$tmnodump//doc[ddbno = current()/ancestor::TEI.2/@n]/hgvno"/>
+          <xsl:value-of select="$tmnodump//ROW[COL[1]//text() = current()/ancestor::TEI.2/@n]/ROW[2]"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:apply-templates/>
