@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns="http://www.tei-c.org/ns/1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"
-    doctype-public="http://www.stoa.org/epidoc/dtd/6/tei-epidoc.dtd"/>
+    doctype-system="http://www.stoa.org/epidoc/dtd/6/tei-epidoc.dtd"/>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
   <!-- |||||||||  copy all existing elements ||||||||| -->
@@ -37,10 +36,12 @@
   </xsl:template>
 
   <xsl:template match="ex[child::unclear]">
+    <xsl:copy>
     <xsl:attribute name="cert">
       <xsl:text>low</xsl:text>
     </xsl:attribute>
     <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
 </xsl:stylesheet>
