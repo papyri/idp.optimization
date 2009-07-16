@@ -35,7 +35,7 @@
   <xsl:value-of select="replace(.,'-','')"/>
 </xsl:template>
 
-  <xsl:template match="lb">
+  <xsl:template match="lb[not(@type)]">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:if test="ends-with(normalize-space(translate(preceding-sibling::text()[1],' ','')), '-')">
