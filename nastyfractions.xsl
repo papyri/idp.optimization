@@ -31,7 +31,7 @@
   <!-- ||||||||||||||    EXCEPTIONS     |||||||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
 
-<xsl:template match="number[empty(true)][matches(@value,'.*\s+.*')]">
+<xsl:template match="num[empty(true)][contains(@value,' ')]">
   <xsl:for-each select="tokenize(normalize-space(@value),'\s+')">
     <xsl:element name="num">
       <xsl:attribute name="value">
