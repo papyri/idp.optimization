@@ -30,12 +30,16 @@
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
   <!-- ||||||||||||||    EXCEPTIONS     |||||||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
-
+  
   <xsl:template match="unclear[parent::ex]">
-        <xsl:apply-templates/>
+    <xsl:apply-templates/>
   </xsl:template>
+  
+  <xsl:template match="note[parent::ex][normalize-space(.) = '?']"/>
+ 
+  <xsl:template match="foreign[parent::ex][normalize-space(.) = '?']"/>
 
-  <xsl:template match="ex[child::unclear]">
+  <xsl:template match="ex[child::unclear or child::note[normalize-space(.) = '?'] or child::foreign[normalize-space(.) = '?']]">
     <xsl:copy>
     <xsl:attribute name="cert">
       <xsl:text>low</xsl:text>
