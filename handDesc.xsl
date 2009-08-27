@@ -33,19 +33,15 @@
 
   <xsl:template match="handList">
     <xsl:if test="//handShift">
-      <xsl:copy>
-        <xsl:copy-of select="@*"/>
-        <xsl:apply-templates/>
-      </xsl:copy>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="hand">
-    <xsl:if test="//handShift[@new = current()/@id]">
-      <xsl:copy>
-        <xsl:copy-of select="@*"/>
-        <xsl:apply-templates/>
-      </xsl:copy>
+      <xsl:element name="handList">
+        <xsl:for-each-group select="//handShift" group-by="@new">
+          <xsl:element name="hand">
+            <xsl:attribute name="id">
+              <xsl:value-of select="@new"/>
+            </xsl:attribute>
+          </xsl:element>
+        </xsl:for-each-group>
+        </xsl:element>
     </xsl:if>
   </xsl:template>
 
