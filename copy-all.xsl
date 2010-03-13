@@ -26,7 +26,26 @@
   </xsl:template>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
+  <!-- ||||||||||||     LIST CHANGES     ||||||||||||| -->
+  <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
+  
+  <xsl:template match="t:revisionDesc">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:element name="change">
+        <xsl:attribute name="when">
+          <xsl:value-of select="date:date()"/>
+        </xsl:attribute>
+        <xsl:attribute name="who">
+          <xsl:text>GB</xsl:text>
+        </xsl:attribute>
+        <xsl:text>...</xsl:text></xsl:element>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
   <!-- ||||||||||||||    EXCEPTIONS     |||||||||||||| -->
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
-
+  
 </xsl:stylesheet>
