@@ -53,6 +53,9 @@
         <xsl:if test="//t:note[@lang='en'][.='?']">
           <xsl:text>; added certainty for note</xsl:text>
         </xsl:if>
+        <xsl:if test="//t:titleStmt/t:title/@n">
+          <xsl:text>; moved title/@n to idno</xsl:text>
+        </xsl:if>
       </xsl:element>
       <xsl:apply-templates/>
     </xsl:copy>
@@ -64,12 +67,40 @@
 
   <xsl:template match="t:div[@type='edition']">
     <xsl:copy>
-      <xsl:copy-of select="@*"/>
+      <xsl:copy-of select="@*[not(local-name() = 'space')]"/>
       <xsl:attribute name="xml:space">
         <xsl:text>preserve</xsl:text>
       </xsl:attribute>
       <xsl:apply-templates/>
     </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="t:titleStmt/t:title[@n]">
+    <xsl:copy>
+      <xsl:copy-of select="@*[not(local-name() = 'n')]"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="t:availability">
+    <xsl:if test="//t:titleStmt/t:title/@n">
+      <xsl:element name="idno">
+        <xsl:attribute name="type">
+          <xsl:text>HGV</xsl:text>
+        </xsl:attribute>
+        <xsl:value-of select="//t:titleStmt/t:title/@n"/>
+      </xsl:element>
+      <xsl:element name="idno">
+        <xsl:attribute name="type">
+          <xsl:text>TM</xsl:text>
+        </xsl:attribute>
+        <xsl:value-of select="replace(//t:titleStmt/t:title/@n,'[a-zA-Z]','')"/>
+      </xsl:element>
+    </xsl:if>
+    <xsl:element name="{local-name()}">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="t:sic[not(parent::t:choice)]">
