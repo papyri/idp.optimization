@@ -42,7 +42,7 @@
     <xsl:text>
 </xsl:text>
     <xsl:processing-instruction name="oxygen">
-      RNGSchema="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"</xsl:processing-instruction>
+      RNGSchema="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng" type="xml"</xsl:processing-instruction>
     <xsl:text>
 </xsl:text>
     <xsl:element name="{local-name()}">
