@@ -34,11 +34,15 @@
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
   
   
-  <xsl:template match="t:TEI">
+  <xsl:template match="t:TEI"><!--
     <xsl:text>
 </xsl:text>
     <xsl:processing-instruction name="xml-model">
-      href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"</xsl:processing-instruction>
+      href="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"</xsl:processing-instruction>-->
+    <xsl:text>
+</xsl:text>
+    <xsl:processing-instruction name="oxygen">
+      RNGSchema="http://www.stoa.org/epidoc/schema/latest/tei-epidoc.rng"</xsl:processing-instruction>
     <xsl:text>
 </xsl:text>
     <xsl:element name="{local-name()}">
