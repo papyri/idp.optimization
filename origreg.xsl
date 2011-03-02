@@ -28,12 +28,12 @@
   
   <xsl:template match="//processing-instruction()">
     <xsl:text>
-    </xsl:text>
+</xsl:text>
     <xsl:copy>
       <xsl:value-of select="."/>
     </xsl:copy>
     <xsl:text>
-    </xsl:text>
+</xsl:text>
   </xsl:template>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
