@@ -17,13 +17,23 @@
   </xsl:template>
 
   <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||| -->
-  <!-- |||||||||||||||| copy all comments  |||||||||||||||| -->
+  <!-- |||||||||||||||| copy all comments and proc-instrs  |||||||||||||||| -->
   <!-- |||||||||||||||||||||||||||||||||||||||||||||||||||| -->
-
-  <xsl:template match="//comment() | //processing-instruction()">
+  
+  <xsl:template match="//comment()">
     <xsl:copy>
       <xsl:value-of select="."/>
     </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="//processing-instruction()">
+    <xsl:text>
+    </xsl:text>
+    <xsl:copy>
+      <xsl:value-of select="."/>
+    </xsl:copy>
+    <xsl:text>
+    </xsl:text>
   </xsl:template>
 
   <!-- ||||||||||||||||||||||||||||||||||||||||||||||| -->
