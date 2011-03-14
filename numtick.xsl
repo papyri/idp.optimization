@@ -75,5 +75,16 @@
       </xsl:choose>
     </xsl:element>
   </xsl:template>
+  
+  <xsl:template match="t:num/t:certainty">
+    <xsl:element name="certainty">
+      <xsl:attribute name="match">
+        <xsl:text>../@value</xsl:text>
+      </xsl:attribute>
+      <xsl:attribute name="locus">
+        <xsl:text>value</xsl:text>
+      </xsl:attribute>
+    </xsl:element>
+  </xsl:template>
 
 </xsl:stylesheet>
