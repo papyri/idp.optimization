@@ -73,6 +73,7 @@
           </xsl:attribute>
         </xsl:otherwise>
       </xsl:choose>
+      <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
   
